@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+/* Global Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*Body Styling */
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle at center, #010314 0%, #00010a 100%);
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+    color: #e0eaff;
+}
+
+
+/* Canvas Background */
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+
+/* verlay Section */
+
+.overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    top: 45%;
+    transform: translateY(-50%);
+}
+
+.title {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    color: #c8e4ff;
+    text-shadow: 0 0 15px #4faaff;
+}
+
+.title span {
+    color: #5ac8ff;
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #90d0ff;
+    opacity: 0.8;
+    text-shadow: 0 0 10px #4faaff;
+}
+
+
+/* Input Section */
+
+.input-container {
+    margin-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(80, 180, 255, 0.3);
+    border-radius: 40px;
+    padding: 12px 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(80, 180, 255, 0.3);
+}
+
+.input-container input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e0f7ff;
+    font-size: 1rem;
+    width: 280px;
+}
+
+.mic-btn,
+.send-btn {
+    background: transparent;
+    border: none;
+    color: #79d0ff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.mic-btn:hover,
+.send-btn:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+
+/* Sidebar Styling */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    background: #1b1f27;
+    color: #fff;
+    padding: 15px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease;
+    z-index: 3;
+}
+
+
+/* When Sidebar is closed */
+
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+
+/* Sidebar Header */
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 210px;
+    margin-bottom: 20px;
+    color: #00ffcc;
+    transition: all 0.3s ease;
+}
+
+.close-btn .icon {
+    width: 34px;
+    height: 50px;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px #00ffcc);
+}
+
+
+/* New Chat Button */
+
+.menu-btn {
+    background: #00ffcc;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+
+/* Sidebar Menu Sections */
+
+.menu-section {
+    margin-top: 20px;
+}
+
+.menu-section h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #aaa;
+}
+
+.menu-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-section ul li {
+    padding: 8px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-section ul li:hover {
+    color: #00ffcc;
+}
+
+
+/*Sidebar Open Button */
+
+.open-sidebar-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #00ffcc;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #000;
+    z-index: 4;
+}
+
+.open-sidebar-btn:hover {
+    background: #00ccaa;
+}
+
+
+/* Sidebar Footer (Sign-in button area) */
+
+.signin-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 999;
+}
+
+
+/* Attractive admin sign-in button */
+
+.signin-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 22px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.signin-btn i {
+    font-size: 18px;
+}
+
+.signin-btn:hover {
+    background: rgba(255, 255, 255, 0.20);
+    transform: translateY(-2px);
+}

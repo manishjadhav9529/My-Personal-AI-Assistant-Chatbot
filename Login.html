@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            background: #0d0d0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            width: 900px;
+            height: 520px;
+            display: flex;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111;
+            box-shadow: 0 0 30px rgba(128, 0, 255, 0.4);
+        }
+        
+        .left {
+            width: 50%;
+            padding: 60px;
+            background: #111;
+        }
+        
+        .right {
+            width: 50%;
+            background: linear-gradient(135deg, #7b2fff, #9350ff);
+            padding: 40px;
+        }
+        
+        h1 {
+            margin-bottom: 25px;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .input-group {
+            margin-top: 25px;
+        }
+        
+        label {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px 4px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #555;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        
+        input:focus {
+            border-bottom: 2px solid #a456ff;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #7b2fff, #9350ff);
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.03);
+        }
+        
+        .text {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .text a {
+            color: #a456ff;
+            text-decoration: none;
+        }
+        
+        #errorMsg {
+            display: none;
+            color: #ff4f4f;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .right h2 {
+            margin-top: 100px;
+            font-size: 35px;
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        .right p {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 15px;
+            line-height: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDE - LOGIN FORM -->
+        <div class="left">
+            <h1>Login</h1>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required />
+                </div>
+
+                <p id="errorMsg">Invalid login details</p>
+
+                <button class="btn" type="submit">Login</button>
+            </form>
+
+            <p class="text">
+                Don’t have an account? <a href="signup.html">Sign Up</a>
+            </p>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right">
+            <h2>WELCOME BACK!</h2>
+            <p>Login to continue your journey with us.<br>We’re glad to see you again.</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", login);
+
+        async function login(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+
+            errorMsg.style.display = "none";
+
+            if (!email || !password) {
+                errorMsg.textContent = "All fields are required.";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Redirect after successful login
+                    window.location.href = "dashboard.html";
+                } else {
+                    errorMsg.textContent = data.message || "Login failed!";
+                    errorMsg.style.display = "block";
+                }
+
+            } catch (error) {
+                errorMsg.textContent = "Error connecting to server.";
+                errorMsg.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
